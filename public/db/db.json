@@ -9,26 +9,6 @@
       "date": "2022-03-09",
       "id": 1
     },
-
-    {
-      "title": "test",
-      "description": {
-        "text": "doctor",
-        "time": "15:40"
-      },
-      "date": "2022-03-08",
-      "id": 3
-    },
-    {
-      "title": "Doctor",
-      "description": {
-        "text": "dentist",
-        "time": "15:12"
-      },
-      "date": "2022-04-01",
-      "id": 4
-    },
-
     {
       "title": "test",
       "description": {
@@ -37,6 +17,15 @@
       },
       "date": "2022-05-08",
       "id": 7
+    },
+    {
+      "title": "Go to movie with friends",
+      "description": {
+        "text": "On va à Bercy",
+        "time": "20:55"
+      },
+      "date": "2022-04-07",
+      "id": 8
     }
   ]
 }

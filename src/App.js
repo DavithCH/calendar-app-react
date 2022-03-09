@@ -26,6 +26,7 @@ const App = () => {
         return setEvents((preEvent) => [
           ...preEvent,
           {
+            id: element.id,
             title: element.title,
             text: element.description.text,
             time: element.description.time,
@@ -100,11 +101,14 @@ const App = () => {
         i <= totalDays - daysToCompleteCalendar
       ) {
         const dayString = `${year}-${month + 1}-${i - dayRemainsFromLastMonth}`;
+        const today =
+          i - dayRemainsFromLastMonth === day &&
+          currentMonthPosition === 0 &&
+          currentYearPosition === 0;
         dayArray.push({
           value: i - dayRemainsFromLastMonth,
           event: dateEvent(dayString),
-          isToday:
-            i - dayRemainsFromLastMonth === day && currentMonthPosition === 0,
+          isToday: today,
           dayInfo: "",
           isDayInMonth: true,
         });
@@ -129,43 +133,43 @@ const App = () => {
     setDays(dayArray);
   }, [currentMonthPosition, currentYearPosition, events]);
 
-  console.log(days);
-
   return (
     <>
-      <div className="container App bg-light">
-        <h1 className="text-center">Calendrier</h1>
-        <div className="d-flex justify-content-center">
-          <div className="d-flex navigation justify-content-between text-center">
-            <Menu
-              setCurrentMonthPosition={setCurrentMonthPosition}
-              currentMonthPosition={currentMonthPosition}
-              theDay={theDay}
-              theMonth={theMonth}
-              theYear={theYear}
-              setCurrentYearPosition={setCurrentYearPosition}
-              currentYearPosition={currentYearPosition}
-              setIsOpenModal={setIsOpenModal}
-              isOpenModal={isOpenModal}
-            />
+      <div className="container App bg-light align-middle">
+        <div className="mid-content">
+          <h1 className="text-center my-3 text-uppercase">Calendrier</h1>
+          <div className="d-flex justify-content-center">
+            <div className="d-flex navigation justify-content-between text-center">
+              <Menu
+                setCurrentMonthPosition={setCurrentMonthPosition}
+                currentMonthPosition={currentMonthPosition}
+                theDay={theDay}
+                theMonth={theMonth}
+                theYear={theYear}
+                setCurrentYearPosition={setCurrentYearPosition}
+                currentYearPosition={currentYearPosition}
+                setIsOpenModal={setIsOpenModal}
+                isOpenModal={isOpenModal}
+              />
+            </div>
           </div>
-        </div>
-        {isOpenModal && <NewEventModal setIsOpenModal={setIsOpenModal} />}
+          {isOpenModal && <NewEventModal setIsOpenModal={setIsOpenModal} />}
 
-        <div className="d-flex weekday  text-center bg-secondary">
-          <div>Dimanche</div>
-          <div>Lundi</div>
-          <div>Mardi</div>
-          <div>Mercredi</div>
-          <div>Jeudi</div>
-          <div>Vendredi</div>
-          <div>Samedi</div>
-        </div>
+          <div className="d-flex weekday text-center bg-secondary text-light">
+            <div>Dimanche</div>
+            <div>Lundi</div>
+            <div>Mardi</div>
+            <div>Mercredi</div>
+            <div>Jeudi</div>
+            <div>Vendredi</div>
+            <div>Samedi</div>
+          </div>
 
-        <div className="calendar">
-          {days.map((day, index) => {
-            return <Day key={index} day={day} />;
-          })}
+          <div className="calendar">
+            {days.map((day, index) => {
+              return <Day key={index} day={day} />;
+            })}
+          </div>
         </div>
       </div>
     </>

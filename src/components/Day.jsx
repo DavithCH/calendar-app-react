@@ -1,13 +1,16 @@
 import "./Day.css";
+import { useState } from "react";
+import DetailEvent from "./DetailEvent";
 
-const Day = ({ day, onClick }) => {
+const Day = ({ day }) => {
+  const [showEvent, setShowEvent] = useState(false);
   const className = `day ${!day.isDayInMonth ? "padding" : ""} ${
     day.isToday ? "currentDay" : ""
   }`;
 
   return (
     <>
-      <div className={className}>
+      <div className={className} onClick={() => setShowEvent(true)}>
         {day.value}
         {day.event && (
           <div className="event">
@@ -15,6 +18,8 @@ const Day = ({ day, onClick }) => {
           </div>
         )}
       </div>
+
+      {showEvent && <DetailEvent setShowEvent={setShowEvent} day={day} />}
     </>
   );
 };

@@ -23,7 +23,7 @@ const NewEventModal = ({ setIsOpenModal }) => {
 
   return ReactDOM.createPortal(
     <form
-      className="new-event bg-info rounded p-4"
+      className="new-event bg-secondary text-light rounded p-4"
       onSubmit={handleEventSubmit}
     >
       <h3 className="text-center mt-3">Enregister un rendez-vous</h3>
@@ -72,7 +72,7 @@ const NewEventModal = ({ setIsOpenModal }) => {
             onChange={(e) => setDate(e.target.value)}
           />
         </div>
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-between my-3">
           <button type="submit" className="btn btn-dark">
             Valider
           </button>
